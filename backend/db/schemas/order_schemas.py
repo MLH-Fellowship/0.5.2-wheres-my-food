@@ -5,7 +5,7 @@ from typing import List
 class OrderBase(BaseModel):
     status: int
     user_email: str
-    order_id: int
+    order_id: str
 
 
 class OrderCreate(OrderBase):

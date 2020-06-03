@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from db.schemas.user_schemas import User, UserCreate
+from db.schemas.order_schemas import Order, OrderCreate
 from typing import List
 
 from db import models, crud
@@ -45,6 +46,11 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
+
+
+@app.post("/orders/", response_model=Order)
+def create_order_for_user(order: OrderCreate, db: Session = Depends(get_db)):
+    return crud.create_user_order(db=db, order=order)
 
 
 if __name__ == "__main__":
