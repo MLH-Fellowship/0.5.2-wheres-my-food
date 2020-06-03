@@ -13,6 +13,7 @@ What things you need to install the software and how to install them
 Flask >= 1.1.2
 Flask-boostrap:  pip3 install flask-bootstrap
 Bootstrap-flask: pip3 install bootstrap-flask
+Flask_WTF: pip3 install Flask-WTF
 Python 3.7.0
 Give examples
 ```
