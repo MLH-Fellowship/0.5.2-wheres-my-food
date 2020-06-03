@@ -11,9 +11,9 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 Flask >= 1.1.2
-flask-boostrap:  pip3 install flask-bootstrap
-bootstrap-flask: pip3 install bootstrap-flask
-python 3.7.0
+Flask-boostrap:  pip3 install flask-bootstrap
+Bootstrap-flask: pip3 install bootstrap-flask
+Python 3.7.0
 Give examples
 ```
 
