@@ -19,7 +19,7 @@ class Order(Base):
     __tablename__ = "items"
 
     id = Column(Integer, primary_key=True, index=True)
-    order_id = Column(String, index=True)  # Platform order id
+    order_id = Column(String, unique=True, index=True)  # Platform order id
     platform_id = Column(Integer, ForeignKey("platforms.id"))
     status = Column(Integer, default=0)
     user_email = Column(String, ForeignKey("users.email"))

@@ -1,7 +1,8 @@
 
 from sqlalchemy.orm import Session
 from db.schemas.user_schemas import UserCreate
-from db.models import User
+from db.schemas.order_schemas import OrderCreate
+from db.models import User, Order
 
 def create_user(db: Session, user: UserCreate):
     user.password = user.password + "notreallyhashed"
@@ -19,3 +20,11 @@ def get_user_by_email(db: Session, email: str):
 
 def get_users(db: Session, skip: int = 0, limit: int = 100):
     return db.query(User).offset(skip).limit(limit).all()
+
+def create_user_order(db: Session, order:OrderCreate):
+    db_item = Order(**order.dict())
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
