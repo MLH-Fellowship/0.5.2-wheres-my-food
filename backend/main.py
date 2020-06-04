@@ -98,7 +98,23 @@ def create_order_for_user(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_admin_user),
 ):
-    return crud.create_user_order(db=db, order=order)
+    existing_order = crud.get_order_by_foreign_id(db, order.order_id, order.platform_id)
+    if existing_order is None:
+        return crud.create_user_order(db=db, order=order)
+    raise HTTPException(
+        status_code=400, detail="Order ID already exists for that platform"
+    )
+
+
+@app.put("/orders/", response_model=Order)
+def update_order_for_user(
+    order_id=str,
+    platform_id=int,
+    new_status=int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_admin_user),
+):
+    return crud.update_user_order(db, order_id, platform_id, new_status)
 
 
 if __name__ == "__main__":
