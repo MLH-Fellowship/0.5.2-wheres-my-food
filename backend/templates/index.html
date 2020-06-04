@@ -6,24 +6,15 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
   </head>
 
-  <script>
-    $(document).ready(function() {
-      $("#login").click(function(){
-        console.log("Hello");
-        $("#login").load("backend/templates/login.html" );
-      })
-    });
-  </script>
-
   <body>
     <div class="ui secondary  menu">
       <a class="active item">
         Home
       </a>
-      <a id="login" class="item">
+      <a href="/login" class="item">
         Login
       </a>
-      <a id="register" class="item">
+      <a href="/register" class="item">
         Register
       </a>
     </div>
@@ -32,4 +23,8 @@
         <p class="lead">Track the status of your food delivery.</p>
     </div> 
   </body>
+  <!-- <script>
+    document.getElementById('login').onclick
+   
+  </script> -->
  </html>

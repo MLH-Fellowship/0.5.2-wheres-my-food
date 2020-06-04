@@ -30,13 +30,25 @@ def get_db():
 def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.post("/users/", response_model=User)
+@app.get("/login")
+def login(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@app.get("/register")
+def login(request: Request):
+    return templates.TemplateResponse("register.html", {"request": request})
+
+@app.post("/users/create", response_model=User)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
+    user = crud.create_user(db=db, user=user)
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
-    return crud.create_user(db=db, user=user)
+    return templates.TemplateResponse("dashboard.html", {"request": request, "user":user})
 
+# @app.get("/dashboard/<int:user_id>'")
+# def dashboard(request: Request):
+#     return templates.TemplateResponse("register.html", {"request": request})
 
 @app.get("/users/", response_model=List[User])
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
