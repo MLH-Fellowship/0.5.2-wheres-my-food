@@ -3,9 +3,10 @@ from sqlalchemy.orm import Session
 from db.schemas.user_schemas import UserCreate
 from db.schemas.order_schemas import OrderCreate
 from db.models import User, Order
+from auth.auth_utils import get_password_hash
 
 def create_user(db: Session, user: UserCreate):
-    user.password = user.password + "notreallyhashed"
+    user.password = get_password_hash(user.password)
     db_user = User(**user.dict())
     db.add(db_user)
     db.commit()
