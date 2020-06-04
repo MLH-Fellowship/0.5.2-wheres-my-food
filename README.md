@@ -1,6 +1,6 @@
 # Where's my food
 
-One Paragraph of project description goes here
+Track your food delivery orders.
 
 ## Getting Started
 
