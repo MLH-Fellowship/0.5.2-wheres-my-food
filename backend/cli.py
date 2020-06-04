@@ -23,7 +23,7 @@ def health_check():
 @click.option('--full_name', default='rachel', required=True, type=(str), help="What is your name? e.g. --full_name='Rachel Liu'")
 @click.option('--email', default='rachel@gmail.com', required=True, type=(str),  help="What is your email? e.g. --email='rachel@gmail.com'")
 @click.option('--password', default='rachel123badpass', required=True, type=(str), help="What is your password of choice? Passwords must be at least eight characters in length.")
-def create_user(full_name, email, password):
+def register_user(full_name, email, password):
     url = 'http://0.0.0.0:8000/users'
     payload = {
     'full_name': full_name, 
@@ -35,25 +35,22 @@ def create_user(full_name, email, password):
     click.echo('Response: \n' + (resp.text) + '\n')
     click.echo('Status Code: \n' + str(resp))
 
+<<<<<<< HEAD
+@click.command()
+@click.option('--name', default='rachel', required=True, type=(str))
+@click.option('--username', default='rachel@gmail.com', required=True, type=(str))
+@click.option('--password', default='rachel123badpass', required=True, type=(str))
+def login_user(name, username, password):
+    url = 'http://0.0.0.0:8000/token/'
     
-@click.command()
-def read_users():
-    url = 'http://0.0.0.0:8000/users'
-    resp = req.get(url)
-
-    click.echo("***Output of GET request on /users*** \n")
-    click.echo('Response: \n' + (resp.text) + '\n')
-    click.echo('Status Code: \n' + str(resp))
-
-
-@click.command()
-@click.option('--user_id', default="0", required=True, type=(str), help="What is the id of the user you want to look up? e.g. --user_id='1'")
-def read_user(user_id):
-    url = 'http://0.0.0.0:8000/user/' + user_id
-    resp = req.get(url)
-    click.echo(url)
-
-    click.echo("***Output of GET request on /user/" "{user_id}*** \n")
+    payload = {
+        'name': name,
+    'username': username, 
+    'password': password,
+    }
+    resp = req.post(url, data=payload)
+    
+    click.echo("***Output of POST request on /token*** \n")
     click.echo('Response: \n' + (resp.text) + '\n')
     click.echo('Status Code: \n' + str(resp))
 
@@ -79,9 +76,8 @@ def create_order_for_user(order_id, platform_id, status, user_email):
 
 
 messages.add_command(health_check)
-messages.add_command(create_user)
-messages.add_command(read_users)
-messages.add_command(read_user)
+messages.add_command(register_user)
+messages.add_command(login_user)
 messages.add_command(create_order_for_user)
 
 
