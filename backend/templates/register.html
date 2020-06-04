@@ -5,6 +5,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
   </head>
+  
   <body>
     <div class="ui middle aligned center aligned grid">
       <div class="column">
@@ -13,38 +14,33 @@
             Register for an account
           </div>
         </h2>
-        <form id = "form" action="/users/create" method="post"  class="ui large form">
+        <form id = "form" action="/users" method="post"  class="ui large form">
           <div class="ui stacked secondary  segment">
             <div class="field">
               <div class="ui left icon input">
                 <i class="user icon"></i>
-                <input type="text" name="fullname" placeholder="Full Name">
-                  {{ fullname }}
+                <input type="text" id="fullname" value="testname" placeholder="Full Name">
               </div>
             </div>
             <div class="field">
               <div class="ui left icon input">
                 <i class="user icon"></i>
-                <input type="text" name="email" placeholder="E-mail address">
-                {{ email }}
+                <input type="text" id="email" placeholder="E-mail address">
               </div>
             </div>
             <div class="field">
               <div class="ui left icon input">
                 <i class="lock icon"></i>
-                <input type="password" name="password" placeholder="Password">
-                      {{ password }}
+                <input type="password" id="password" value="testpassword" placeholder="Password">
               </div>
             </div>
             <input type="submit" value="Register" class="ui fluid large teal submit button">
-            <!-- <div class="ui fluid large teal submit button">Register</div> -->
           </div>
-          <div class="ui error message"></div>
+          <div class="ui error message" id="error"></div>
         </form>
       </div>
     </div>
     <script>
-      console.log('fullname',fullname);
       const userFullName = document.getElementById('fullname');
       const userEmail = document.getElementById('email');
       const userPw = document.getElementById('password');
@@ -56,10 +52,10 @@
           userEmail.value = '';
           userPw.value = '';
           userFullName.value = '';
-          fetch('/users/create', {
+          fetch('/users', {
             method: 'POST',
             body: JSON.stringify({
-              'fullname': name,
+              'full_name': name,
               'email': email,
               'password': password
             }),
@@ -67,14 +63,16 @@
               'Content-Type': 'application/json',
             }
           })
-          .then(response => response.json())
-          .then(jsonResponse => {
-            console.log('response', jsonResponse);
-          })
-          .catch(function() {
+          // .then(response => response.jsonRe)
+          // .then(jsonResponse => {
+          //   console.log('response', jsonResponse);
+          // })
+          .catch(function(error) {
             document.getElementById('error').className = '';
+            console.log(error)
           })
         }
     </script>
+  
   </body>
 </html>
