@@ -61,7 +61,7 @@ async def get_me(
 def create_user(
     user: UserCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_admin_user),
+    # current_user: User = Depends(get_admin_user), # This is commented for development and testin purposes
 ):
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:
