@@ -35,7 +35,7 @@ def register_user(full_name, email, password):
     click.echo('Response: \n' + (resp.text) + '\n')
     click.echo('Status Code: \n' + str(resp))
 
-<<<<<<< HEAD
+    
 @click.command()
 @click.option('--name', default='rachel', required=True, type=(str))
 @click.option('--username', default='rachel@gmail.com', required=True, type=(str))
