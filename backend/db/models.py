@@ -16,10 +16,17 @@ class User(Base):
 
 
 class Order(Base):
+<<<<<<< HEAD
     __tablename__ = "orders"
 
     id = Column(Integer, primary_key=True, index=True)
     order_id = Column(String, index=True)  # Platform order id
+=======
+    __tablename__ = "items"
+
+    id = Column(Integer, primary_key=True, index=True)
+    order_id = Column(String, unique=True, index=True)  # Platform order id
+>>>>>>> 2cd44532a8d97d15e82c254337d19b294df51e8f
     platform_id = Column(Integer, ForeignKey("platforms.id"))
     status = Column(Integer, default=0)
     user_email = Column(String, ForeignKey("users.email"))

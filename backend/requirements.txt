@@ -20,7 +20,10 @@ MarkupSafe==1.1.1
 orjson==3.0.2
 promise==2.3
 pydantic==1.5.1
+<<<<<<< HEAD
 pyjwt==1.7.1
+=======
+>>>>>>> 2cd44532a8d97d15e82c254337d19b294df51e8f
 python-multipart==0.0.5
 PyYAML==5.3.1
 requests==2.23.0
@@ -33,5 +36,8 @@ urllib3==1.25.9
 uvicorn==0.11.5
 uvloop==0.14.0
 websockets==8.1
+<<<<<<< HEAD
 passlib[bcrypt]
+=======
+>>>>>>> 2cd44532a8d97d15e82c254337d19b294df51e8f
 fastapi[all]
