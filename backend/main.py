@@ -10,7 +10,7 @@ from auth.auth_schema import Token
 from db import models, crud
 from db.database import SessionLocal, engine
 from fastapi.security import OAuth2PasswordRequestForm
-from auth.auth import get_current_active_user
+from auth.auth import get_current_active_user, get_admin_user
 
 app = FastAPI()
 
@@ -58,7 +58,11 @@ async def get_me(
 
 
 @app.post("/users/", response_model=User)
-def create_user(user: UserCreate, db: Session = Depends(get_db)):
+def create_user(
+    user: UserCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_admin_user),
+):
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
@@ -66,13 +70,22 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
 
 
 @app.get("/users/", response_model=List[User])
-def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def read_users(
+    skip: int = 0,
+    limit: int = 100,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_admin_user),
+):
     users = crud.get_users(db, skip=skip, limit=limit)
     return users
 
 
 @app.get("/users/{user_id}", response_model=User)
-def read_user(user_id: int, db: Session = Depends(get_db)):
+def read_user(
+    user_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_admin_user),
+):
     db_user = crud.get_user(db, user_id=user_id)
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
@@ -80,7 +93,11 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
 
 
 @app.post("/orders/", response_model=Order)
-def create_order_for_user(order: OrderCreate, db: Session = Depends(get_db)):
+def create_order_for_user(
+    order: OrderCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_admin_user),
+):
     return crud.create_user_order(db=db, order=order)
 
 

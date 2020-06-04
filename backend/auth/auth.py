@@ -56,3 +56,9 @@ async def get_current_active_user(current_user: User = Depends(get_current_user)
     # if current_user.disabled:
     #     raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
+
+
+async def get_admin_user(current_user: User = Depends(get_current_user)):
+    if current_user.is_admin:
+        return current_user
+    raise HTTPException(status_code=401, detail="Non admin user")
