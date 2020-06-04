@@ -10,6 +10,7 @@ from db.database import SessionLocal, engine
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 import logging
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
@@ -40,6 +41,11 @@ def login(request: Request):
 def login(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
 
+@app.get("/dashboard")
+def login(request: Request):
+    return templates.TemplateResponse("dashboard.html", {"request": request})
+
+
 logger = logging.getLogger("api")
 # # /api  -click part
 @app.post("/users", response_model=User)
@@ -48,8 +54,8 @@ def create_user(request: Request, user: UserCreate, db: Session = Depends(get_db
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     user = crud.create_user(db=db, user=user)
-    logger.debug("in here")
-    return templates.TemplateResponse("users.html", {"request": request, "user":user})
+    return user
+    
     
 
 # @app.get("/dashboard/<int:user_id>'")

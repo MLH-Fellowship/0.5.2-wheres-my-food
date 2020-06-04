@@ -7,6 +7,17 @@
   </head>
   
   <body>
+    <div class="ui secondary  menu">
+      <a href="/" class="active item">
+        Home
+      </a>
+      <a href="/login" class="item">
+        Login
+      </a>
+      <a href="/register" class="item">
+        Register
+      </a>
+    </div>
     <div class="ui middle aligned center aligned grid">
       <div class="column">
         <h2 class="ui image header">
@@ -34,13 +45,48 @@
                 <input type="password" id="password" value="testpassword" placeholder="Password">
               </div>
             </div>
-            <input type="submit" value="Register" class="ui fluid large teal submit button">
+            <input type="submit" value="Register" class="ui fluid large orange submit button">
           </div>
           <div class="ui error message" id="error"></div>
         </form>
       </div>
     </div>
     <script>
+      // $(document)
+      //   .ready(function() {
+      //     $('.ui.form')
+      //       .form({
+      //         fields: {
+      //           email: {
+      //             identifier  : 'email',
+      //             rules: [
+      //               {
+      //                 type   : 'empty',
+      //                 prompt : 'Please enter your e-mail'
+      //               },
+      //               {
+      //                 type   : 'email',
+      //                 prompt : 'Please enter a valid e-mail'
+      //               }
+      //             ]
+      //           },
+      //           password: {
+      //             identifier  : 'password',
+      //             rules: [
+      //               {
+      //                 type   : 'empty',
+      //                 prompt : 'Please enter your password'
+      //               },
+      //               {
+      //                 type   : 'length[6]',
+      //                 prompt : 'Your password must be at least 6 characters'
+      //               }
+      //             ]
+      //           }
+      //         }
+      //       })
+      //     ;
+      //   });
       const userFullName = document.getElementById('fullname');
       const userEmail = document.getElementById('email');
       const userPw = document.getElementById('password');
@@ -63,15 +109,26 @@
               'Content-Type': 'application/json',
             }
           })
-          // .then(response => response.jsonRe)
-          // .then(jsonResponse => {
-          //   console.log('response', jsonResponse);
-          // })
+          .then(response => {
+            const status = response.status;
+            const myUrl = response.url;     
+            if (status=="200") {
+              Response.redirect("/dashboard")
+            }
+          })
+          .then(jsonResponse => {
+            console.log('response', jsonResponse);
+          })
           .catch(function(error) {
             document.getElementById('error').className = '';
             console.log(error)
           })
         }
+
+      
+      
+
+        // redirect look at status ocde
     </script>
   
   </body>
