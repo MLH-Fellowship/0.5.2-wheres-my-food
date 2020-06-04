@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <link href="{{ url_for('static', path='/index.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+  </head>
+
+  <script>
+    $(document).ready(function() {
+      $("#login").click(function(){
+        console.log("Hello");
+        $("#login").load("backend/templates/login.html" );
+      })
+    });
+  </script>
+
+  <body>
+    <div class="ui secondary  menu">
+      <a class="active item">
+        Home
+      </a>
+      <a id="login" class="item">
+        Login
+      </a>
+      <a id="register" class="item">
+        Register
+      </a>
+    </div>
+    <div class="index">
+        <h1>Where's my Food? 🥪</h1>
+        <p class="lead">Track the status of your food delivery.</p>
+    </div> 
+  </body>
+ </html>

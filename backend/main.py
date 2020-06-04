@@ -1,14 +1,19 @@
 import uvicorn
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Request
 from sqlalchemy.orm import Session
 from db.schemas.user_schemas import User, UserCreate
 from db.schemas.order_schemas import Order, OrderCreate
 from typing import List
-
+from fastapi.staticfiles import StaticFiles
 from db import models, crud
 from db.database import SessionLocal, engine
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+templates = Jinja2Templates(directory="templates")
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -22,9 +27,8 @@ def get_db():
 
 
 @app.get("/")
-async def health_check():
-    return {"status": "cool 😎"}
-
+def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/users/", response_model=User)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
@@ -46,6 +50,11 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
+
+
+@app.post("/test/", response_model=Order)
+def create_order_for_user(order: OrderCreate, db: Session = Depends(get_db)):
+    return {"message":"Hi from post"}
 
 
 @app.post("/orders/", response_model=Order)
