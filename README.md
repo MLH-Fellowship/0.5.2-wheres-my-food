@@ -1,8 +1,7 @@
 <h1 align="center">
-  <a href="https://github.com/denysdovhan/spaceship-prompt">
+  <a href="#">
     <img alt="where is my food" src="https://res.cloudinary.com/dmrgfufa4/image/upload/v1591336676/Artboard_1.png" width="400">
   </a>
-  <br>Where is my food? 🍔<br>
 </h1>
 
 ## Problem Statment
