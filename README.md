@@ -9,7 +9,7 @@
 Are you unsure of how many food delivery orders you have racked up? Do you want to see where and what you have ordered? 
 **Where's my food?** is an Open API that keeps track of your past food delivery orders by displaying the order information of each delivery.
 
-Feel free to check you food delivery orders via the **web application, CLI**, or both!
+Feel free to check your food delivery orders via the **web application, CLI**, or both!
 
 ## Open Source Projects Used
 - [FastAPI](https://fastapi.tiangolo.com) was used as the web framework in this project.
