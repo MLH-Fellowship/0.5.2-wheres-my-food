@@ -12,10 +12,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+First, install Click by:
 
 ```
-Give examples
+pip install -U click
+```
+
+Lastly, run the requirements.txt file found in the backend folder. To do so, create and run a python vitrual environment. Then run,
+```
+pip install -r requirements.txt
 ```
 
 ### Installing
