@@ -1,8 +1,9 @@
 # Where's my food
 
-Track your food delivery orders.
+Are you unsure of how many food delivery orders you have racked up? Where's my food is a web development application and CLI that keeps track of your past food delivery orders by displaying the order information of each delivery.
 
 ## Open Source Project Used
+
 
 ## Getting Started
 
