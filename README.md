@@ -3,6 +3,8 @@
 Are you unsure of how many food delivery orders you have racked up? Where's my food is a web development application and CLI that keeps track of your past food delivery orders by displaying the order information of each delivery.
 
 ## Open Source Project Used
+fastapi
+Click
 
 
 ## Getting Started
@@ -35,25 +37,6 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
@@ -61,9 +44,9 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Fastapi](https://fastapi.tiangolo.com) - The web framework used
+* [Click](https://click.palletsprojects.com/en/7.x/) - python package used
+*
 
 ## Contributing
 
