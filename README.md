@@ -10,12 +10,6 @@ Are you unsure of how many food delivery orders you have racked up? Do you want 
 
 ## Getting Started
 
-Flask >= 1.1.2
-Flask-boostrap:  pip3 install flask-bootstrap
-Bootstrap-flask: pip3 install bootstrap-flask
-Flask_WTF: pip3 install Flask-WTF
-pip3 install email_validator
-Python 3.7.0
 Give examples
 ```
 
