@@ -20,7 +20,7 @@ Then install Click by:
 pip install -U click
 ```
 
-Lastly, run the requirements.txt file found in the backend folder. To do so, create and run a python vitrual environment. Then run,
+Lastly, run the requirements.txt file found in the backend folder. To do so, create and activate a python vitrual environment. Then run,
 ```
 pip install -r requirements.txt
 ```
