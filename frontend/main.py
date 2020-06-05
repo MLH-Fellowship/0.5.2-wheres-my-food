@@ -17,6 +17,14 @@ def login():
 def me():
     return render_template("me.html")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")

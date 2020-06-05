@@ -1,135 +1,53 @@
 <html>
   <head>
-    <link href="{{ url_for('static', path='/login.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-  </head>
+    <link rel="stylesheet" href="static/register.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head> 
   
   <body>
-    <div class="ui secondary  menu">
-      <a href="/" class="active item">
-        Home
-      </a>
-      <a href="/login" class="item">
-        Login
-      </a>
-      <a href="/register" class="item">
-        Register
-      </a>
-    </div>
-    <div class="ui middle aligned center aligned grid">
-      <div class="column">
-        <h2 class="ui image header">
-          <div class="content">
-            Register for an account
+    <div class="container-fluid">
+      <div class="row no-gutter">
+        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image" style="background-image: url('/static/img/food_delivery.jpg')"></div>
+        <div class="col-md-8 col-lg-6">
+          <div class="login d-flex align-items-center py-5">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-9 col-lg-8 mx-auto">
+                  <h3 class="login-heading mb-4">Register</h3>
+                  <form>
+                    <div class="form-label-group">
+                      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                      <label for="inputEmail">Email address</label>
+                    </div>
+    
+                    <div class="form-label-group">
+                      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                      <label for="inputPassword">Password</label>
+                    </div>
+    
+                    <div class="custom-control custom-checkbox mb-3">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1">
+                      <label class="custom-control-label" for="customCheck1">Remember password</label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
+                    <div class="text-center">
+                      <a class="small" href="#">Forgot password?</a></div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
-        </h2>
-        <form id = "form" action="/users" method="post"  class="ui large form">
-          <div class="ui stacked secondary  segment">
-            <div class="field">
-              <div class="ui left icon input">
-                <i class="user icon"></i>
-                <input type="text" id="fullname" value="testname" placeholder="Full Name">
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui left icon input">
-                <i class="user icon"></i>
-                <input type="text" id="email" placeholder="E-mail address">
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui left icon input">
-                <i class="lock icon"></i>
-                <input type="password" id="password" value="testpassword" placeholder="Password">
-              </div>
-            </div>
-            <input type="submit" value="Register" class="ui fluid large orange submit button">
-          </div>
-          <div class="ui error message" id="error"></div>
-        </form>
+        </div>
       </div>
     </div>
-    <script>
-      // $(document)
-      //   .ready(function() {
-      //     $('.ui.form')
-      //       .form({
-      //         fields: {
-      //           email: {
-      //             identifier  : 'email',
-      //             rules: [
-      //               {
-      //                 type   : 'empty',
-      //                 prompt : 'Please enter your e-mail'
-      //               },
-      //               {
-      //                 type   : 'email',
-      //                 prompt : 'Please enter a valid e-mail'
-      //               }
-      //             ]
-      //           },
-      //           password: {
-      //             identifier  : 'password',
-      //             rules: [
-      //               {
-      //                 type   : 'empty',
-      //                 prompt : 'Please enter your password'
-      //               },
-      //               {
-      //                 type   : 'length[6]',
-      //                 prompt : 'Your password must be at least 6 characters'
-      //               }
-      //             ]
-      //           }
-      //         }
-      //       })
-      //     ;
-      //   });
-      const userFullName = document.getElementById('fullname');
-      const userEmail = document.getElementById('email');
-      const userPw = document.getElementById('password');
-        document.getElementById('form').onsubmit = function(e) {
-          e.preventDefault();
-          const name = userFullName.value;
-          const email = userEmail.value;
-          const password = userPw.value;
-          userEmail.value = '';
-          userPw.value = '';
-          userFullName.value = '';
-          fetch('/users', {
-            method: 'POST',
-            body: JSON.stringify({
-              'full_name': name,
-              'email': email,
-              'password': password
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          })
-          .then(response => {
-            const status = response.status;
-            const myUrl = response.url;     
-            if (status=="200") {
-              Response.redirect("/dashboard")
-            }
-          })
-          .then(jsonResponse => {
-            console.log('response', jsonResponse);
-          })
-          .catch(function(error) {
-            document.getElementById('error').className = '';
-            console.log(error)
-          })
-        }
 
-      
-      
-
-        // redirect look at status ocde
-    </script>
-  
+    <script src="jquery/jquery.slim.min.js"></script>
+    <script src="static/bootstrap.min.css"></script>
+    <script src="static/bootstrap.bundle.min.js"></script>
   </body>
+
 </html>
