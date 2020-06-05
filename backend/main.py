@@ -1,5 +1,8 @@
 import uvicorn
-from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi import Depends, FastAPI, HTTPException, status, Request, Response, Cookie
+from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from db.schemas.user_schemas import User, UserCreate
 from db.schemas.order_schemas import Order, OrderCreate
@@ -13,6 +16,16 @@ from fastapi.security import OAuth2PasswordRequestForm
 from auth.auth import get_current_active_user, get_admin_user
 
 app = FastAPI()
+
+origins = ["http://localhost", "http://localhost:8000", "http://localhost:5000", "*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -32,8 +45,16 @@ async def health_check():
 
 @app.post("/token", response_model=Token)
 async def login_for_access_token(
-    form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)
+    response: Response,
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    db: Session = Depends(get_db),
 ):
+    import logging
+
+    logger = logging.getLogger("api")
+    logger.debug(form_data)
+    print(form_data.username)
+    print(form_data.password)
     user = authenticate_user(db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(
@@ -43,13 +64,14 @@ async def login_for_access_token(
         )
 
     access_token = create_access_token(data={"sub": user.email})
-
+    response.set_cookie(key="wmf_cookie", value=access_token)
     return {"access_token": access_token, "token_type": "bearer"}
 
 
 @app.get("/me", response_model=User)
 async def get_me(
-    current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db),
 ):
     db_user = crud.get_user(db, user_id=current_user.id)
     if db_user is None:

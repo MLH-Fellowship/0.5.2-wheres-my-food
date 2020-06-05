@@ -19,7 +19,8 @@ Feel free to check your food delivery orders via the **web application, CLI**, o
 
 ## Getting Started
 
-To get started, clone the repository to your local machine.
+Give examples
+```
 
 ### Installing
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/me.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card border-0 shadow my-5">
+          <div class="card-body p-5">
+            <h1 class="font-weight-light">Yay Logged in!</h1>
+            <p id="result"></p>
+          </div>
+        </div>
+      </div>
+    
+
+    <script>
+        const getCookie = function (name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        };
+
+        const wmf_cookie = getCookie('wmf_cookie');
+        console.log(wmf_cookie)
+        fetch("http://localhost:8000/me", {
+            headers: {
+                "Authorization": `Bearer ${wmf_cookie}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                var result = document.getElementById("result");
+                // Here you should update the UI
+                // console.log(res)
+                var count = 0;
+                for (let key in res) {
+                    if (key=="orders"){
+                        for (let order in res[key]) {
+                            if (res[key][order]["status"] == "0"){
+                                    result.innerHTML += "status: " + "cancelled, ";
+
+                                }
+                            else if (res[key][order]["status"] == "1"){
+                                result.innerHTML += "status: " + "done, ";
+
+                            }
+                            else if (res[key][order]["status"] == "2"){
+                                result.innerHTML += "status: " + "pending, ";
+
+                                }
+
+                            result.innerHTML += "order_id: " + res[key][order]["order_id"] + "<br/>";
+                            count += 1;
+                        }
+                    }
+                    
+                    
+                }
+                result.innerHTML += "Total Orders: " + count;
+
+            })
+
+    </script>
+    <!-- <script src="jquery/jquery.slim.min.js"></script>
+    <script src="static/bootstrap.min.css"></script>
+    <script src="static/bootstrap.bundle.min.js"></script> -->
+</body>
+
+</html>
