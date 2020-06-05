@@ -12,7 +12,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-First, install Click by:
+First, Python 3.7 >= must be installed on your machine.
+
+Then install Click by:
 
 ```
 pip install -U click
