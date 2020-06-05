@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
-    Yay! Logged in
+    <h1>Yay! Logged in</h1>   
+    <div id="result" ></div>
+
     <script>
         const getCookie = function (name) {
             const value = "; " + document.cookie;
@@ -25,8 +26,35 @@
         })
             .then(res => res.json())
             .then(res => {
+                var result = document.getElementById("result");
                 // Here you should update the UI
-                console.log(res)
+                // console.log(res)
+                var count = 0;
+                for (let key in res) {
+                    if (key=="orders"){
+                        for (let order in res[key]) {
+                            if (res[key][order]["status"] == "0"){
+                                    result.innerHTML += "status: " + "cancelled, ";
+
+                                }
+                            else if (res[key][order]["status"] == "1"){
+                                result.innerHTML += "status: " + "done, ";
+
+                            }
+                            else if (res[key][order]["status"] == "2"){
+                                result.innerHTML += "status: " + "pending, ";
+
+                                }
+
+                            result.innerHTML += "order_id: " + res[key][order]["order_id"] + "<br/>";
+                            count += 1;
+                        }
+                    }
+                    
+                    
+                }
+                result.innerHTML += "Total Orders: " + count;
+
             })
 
     </script>
