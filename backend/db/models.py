@@ -9,7 +9,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     full_name = Column(String)
     email = Column(String, unique=True, index=True)
-    is_admin = Column(Boolean, default=False)
+    is_admin = Column(Boolean, default=True)
     password = Column(String)
 
     orders = relationship("Order", backref="users")
