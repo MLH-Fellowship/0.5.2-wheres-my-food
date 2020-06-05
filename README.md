@@ -2,7 +2,7 @@
 
 ## Problem Statment
 
-Are you unsure of how many food delivery orders you have racked up? Do you want to see where and what you have ordered? Where's my food is a web development application and CLI that keeps track of your past food delivery orders by displaying the order information of each delivery. Feel free to check you food delivery orders via web application, CLI, or both!
+Are you unsure of how many food delivery orders you have racked up? Do you want to see where and what you have ordered? Where's my food is a web development application and CLI that keeps track of your past food delivery orders by displaying the order information of each delivery. Feel free to check you food delivery orders via the web application, CLI, or both!
 
 ## Open Source Projects Used
 [FastAPI](https://fastapi.tiangolo.com) was used as the web framework in this project. [Click](https://palletsprojects.com/p/click/) was used as the command line interface creation kit.
