@@ -10,13 +10,13 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     password: str
-    is_admin: bool = False  # This shouldn't be here as would make admin everyone
+    is_admin: bool = True  # This shouldn't be here as would make admin everyone
 
 
 class User(UserBase):
     id: int
     orders: List[Order] = []
-    is_admin: bool = False
+    is_admin: bool = True
 
     class Config:
         orm_mode = True

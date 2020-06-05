@@ -92,6 +92,18 @@ def read_user(
     return db_user
 
 
+@app.get("/orders/{email}", response_model=List[Order])
+def get_order_for_user(
+    email: str,
+    skip: int = 0,
+    limit: int = 100,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_admin_user),
+):
+    orders = crud.get_users_orders(email=email, db=db, skip=skip, limit=limit)
+    return orders
+    
+
 @app.post("/orders/", response_model=Order)
 def create_order_for_user(
     order: OrderCreate,
@@ -115,7 +127,6 @@ def update_order_for_user(
     current_user: User = Depends(get_admin_user),
 ):
     return crud.update_user_order(db, order_id, platform_id, new_status)
-
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

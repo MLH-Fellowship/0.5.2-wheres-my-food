@@ -22,6 +22,9 @@ def get_user_by_email(db: Session, email: str):
 def get_users(db: Session, skip: int = 0, limit: int = 100):
     return db.query(User).offset(skip).limit(limit).all()
 
+def get_users_orders(db: Session, email:str, skip: int = 0, limit: int = 100):
+    return db.query(Order).filter(Order.user_email == email).offset(skip).limit(limit).all()
+
 def create_user_order(db: Session, order:OrderCreate):
     db_item = Order(**order.dict())
     db.add(db_item)
@@ -39,3 +42,4 @@ def update_user_order(db: Session, order_id: str, platform_id:int, new_status: i
     db.add(order)
     db.commit()
     return order
+
