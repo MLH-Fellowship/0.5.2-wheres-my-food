@@ -43,7 +43,3 @@ def update_user_order(db: Session, order_id: str, platform_id:int, new_status: i
     db.commit()
     return order
 
-# def get_user_orders(db: Session, email:str):
-#     return db.query(User).filter(User.email == email).first()
-    # var = db.query(User).filter(User.email = email).all()
-    # return var.order
