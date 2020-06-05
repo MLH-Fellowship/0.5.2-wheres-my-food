@@ -1,11 +1,20 @@
-# Where's my food
+<h1 align="center">
+  <a href="#">
+    <img alt="where is my food" src="https://res.cloudinary.com/dmrgfufa4/image/upload/v1591336676/Artboard_1.png" width="400">
+  </a>
+</h1>
 
 ## Problem Statment
 
-Are you unsure of how many food delivery orders you have racked up? Do you want to see where and what you have ordered? Where's my food is a web development application and CLI that keeps track of your past food delivery orders by displaying the order information of each delivery. Feel free to check you food delivery orders via the web application, CLI, or both!
+Are you unsure of how many food delivery orders you have racked up? Do you want to see where and what you have ordered? 
+**Where's my food?** is an Open API that keeps track of your past food delivery orders by displaying the order information of each delivery.
+
+Feel free to check you food delivery orders via the **web application, CLI**, or both!
 
 ## Open Source Projects Used
-[FastAPI](https://fastapi.tiangolo.com) was used as the web framework in this project. [Click](https://palletsprojects.com/p/click/) was used as the command line interface creation kit.
+- [FastAPI](https://fastapi.tiangolo.com) was used as the web framework in this project.
+- [Click](https://palletsprojects.com/p/click/) was used as the command line interface creation kit.
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/) was used for rendering templates for the web app.
 
 
 ## Getting Started
@@ -14,35 +23,18 @@ To get started, clone the repository to your local machine.
 
 ### Installing
 
-First, Python 3.7 >= must be installed on your machine.
+Even though this is a simple repo, there are three completely different projects in each folder.
+For **each** of the folders `backend`, `frontend`, and `cli` you should run the following:
 
-Then install Click by:
-
+```sh
+pip3 install -r requirements.txt
 ```
-pip install -U click
-```
-
-Lastly, run the requirements.txt file found in the backend folder. To do so, create and activate a python vitrual environment. Then run,
-```
-pip install -r requirements.txt
-```
-
-## Built With
-
-* [Fastapi](https://fastapi.tiangolo.com) - The web framework used
-* [Click](https://click.palletsprojects.com/en/7.x/) - python package used
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
-* **Rodrigo Medina** 
-* **Rachel Liu** 
-* **Diana Arreola** 
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* [Rodrigo Medina](https://github.com/roeeyn) 
+* [Rachel Liu](https://github.com/rch-liu)
+* [Diana Arreola](https://github.com/diarreola)
 
 ## License
 
@@ -50,4 +42,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-This was completed for the MLH Hackathon.
+This was completed for the MLH Fellowship, 1st week Hackathon 🚀.
