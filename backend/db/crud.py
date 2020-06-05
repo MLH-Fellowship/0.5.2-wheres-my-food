@@ -3,9 +3,10 @@ from sqlalchemy.orm import Session
 from db.schemas.user_schemas import UserCreate
 from db.schemas.order_schemas import OrderCreate
 from db.models import User, Order
+from auth.auth_utils import get_password_hash
 
 def create_user(db: Session, user: UserCreate):
-    user.password = user.password + "notreallyhashed"
+    user.password = get_password_hash(user.password)
     db_user = User(**user.dict())
     db.add(db_user)
     db.commit()
@@ -28,3 +29,13 @@ def create_user_order(db: Session, order:OrderCreate):
     db.refresh(db_item)
     return db_item
 
+def get_order_by_foreign_id(db: Session, order_id: str, platform_id: int):
+    return db.query(Order).filter(Order.order_id == order_id, Order.platform_id == platform_id).first()
+
+
+def update_user_order(db: Session, order_id: str, platform_id:int, new_status: int):
+    order = db.query(Order).filter(Order.order_id == order_id, Order.platform_id == platform_id).first()
+    order.status = new_status
+    db.add(order)
+    db.commit()
+    return order

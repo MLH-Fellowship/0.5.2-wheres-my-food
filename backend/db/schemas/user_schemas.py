@@ -10,6 +10,7 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     password: str
+    is_admin: bool = False  # This shouldn't be here as would make admin everyone
 
 
 class User(UserBase):
